@@ -1,0 +1,12 @@
+CREATE TABLE iF NOT EXISTS `orders` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `userId` CHAR(36) NOT NULL,
+  `total` DECIMAL(10, 2) NOT NULL,
+  `status` ENUM('pending', 'complete', 'cancelled') NOT NULL DEFAULT 'pending',
+  `address` TEXT NOT NULL,
+
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`userId`) REFERENCES `users`(`id`)
+);
